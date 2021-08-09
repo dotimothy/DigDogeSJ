@@ -12,7 +12,7 @@
 	<script>
 		// Gets Doge Balance of Specified Unmineable Doge Address	
 		function getDogeBalance(address) {
-			//document.write(`https://api.unminable.com/v4/address/${address}?coin=DOGE`);
+			//document.write(`https://api.unmineable.com/v4/address/${address}?coin=DOGE`);
 			fetch(`https://api.unminable.com/v4/address/${address}?coin=DOGE`) 
 				.then( 
 					function(response) {
