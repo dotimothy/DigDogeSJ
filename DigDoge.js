@@ -57,13 +57,13 @@ function getShibBalance(address) {
 }
 
 //gets the current Doge workers that are active and reports their hashrates
-//in progress
+//in progress -> Jason
 function getDogeWorkers(address) {
 
 }
 
 //gets the current Shib workers that are active and reports their hashrates
-//in progress
+//in progress -> Jason
 function getShibWorkers(address) {
 
 }
