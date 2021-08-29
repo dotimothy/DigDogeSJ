@@ -8,7 +8,7 @@
 body { 
 	background-color: black;
 	opacity: 0%;
-	transition: 3s;
+	transition: 1.5s;
 }
 body:hover, body:active {
 	opacity: 100%;
