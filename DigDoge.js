@@ -5,6 +5,21 @@
 * Jason Vu
 */ 
 
+//init Google Voice
+var msg = new SpeechSynthesisUtterance();
+var volume = 1;
+var voices = ["Google US English","Google US English"];
+msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == voices[0];})[0];
+msg.pitch = 2;
+msg.rate = 5;
+msg.text = '';
+msg.volume = volume;
+
+function speakText(outputText) {
+    msg.text = outputText;
+    msg.volume = volume;
+    window.speechSynthesis.speak(msg);
+}
 
 //Global Variables for Balances
 let dogeBal = 0, shibBal = 0, dogePrice = 0, shibPrice = 0, dogeUSD = 0, shibUSD = 0;
@@ -107,11 +122,13 @@ function getDogePrice() {
 				response.json().then(function(data) {
 					console.log(data);			
 					dogePrice = data.market_data.current_price.usd;
+					document.getElementById("priceDoge").innerHTML = "<h1> 1 DOGE = " + data.market_data.current_price.usd + " USD </h1>";
 				});
 			}).catch(function(err) {
 				console.log("Fetch Error :-S", err);
 			}
 		)
+	
 }
 
 //gets the live price of SHIB
@@ -122,10 +139,32 @@ function getShibPrice() {
 			//examine the text in the response
 			response.json().then(function(data) {
 				console.log(data);			
-				shibPrice = data.market_data.current_price.usd;						
+				shibPrice = data.market_data.current_price.usd;	
+				document.getElementById("priceShib").innerHTML = "<h1> 1 SHIB = " + data.market_data.current_price.usd+ " USD </h1>";					
 			});
 		}).catch(function(err) {
 			console.log("Fetch Error :-S", err);
 		}
 	)
+}
+
+//makes the prices switch around
+let switched = 0;
+function switchAround() {
+	if(!switched) {
+		let dogeInDollar = 1.00 / dogePrice;
+		let shibInDollar = 1.00 / shibPrice; 
+		document.getElementById("priceDoge").innerHTML = "<h1> 1 USD = " + dogeInDollar + " DOGE </h1>";
+		document.getElementById("priceShib").innerHTML = "<h1> 1 USD = " + shibInDollar + " USD </h1>";					
+	}
+	else {
+		document.getElementById("priceDoge").innerHTML = "<h1> 1 DOGE = " + dogePrice + " USD </h1>";
+		document.getElementById("priceShib").innerHTML = "<h1> 1 SHIB = " + shibPrice + " SHIB </h1>";					
+	}
+	switched = !switched;
+}
+
+function woof() {
+	console.log("Woof Woof!");
+	speakText("Woof Woof!");
 }

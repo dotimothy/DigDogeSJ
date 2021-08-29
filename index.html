@@ -8,8 +8,6 @@
 		<head>
 			<title>DigDogeSJ Crypto Pool</title>
 			<link rel="shortcut icon" type="image/png" href="https://dotimothy.github.io/images/doge.png" />
-			<link rel="stylesheet" href="./DigDoge.css">
-			<script src="./DigDoge.js"></script>
 			<meta name="viewport" content="width=device-width, initial-scale=1"> 
 			<meta name="description" content="Timothy Do's Crypto Server (DigDogeSJ)">
 		</head>
@@ -23,8 +21,8 @@
 				<a target="_blank" rel="noreferrer" href="https://discord.gg/hVCuzeqJSf">Discord</a>
 			</h2>
 
-			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/dogeba.png"style="position:fixed;top:12.5%;width:10%;">
-			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/dogeba.png"style="position:fixed;width:10%;bottom:15%;">
+			<img onclick="woof()" class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/dogeba.png"style="position:fixed;top:12.5%;width:10%;">
+			<img onclick="woof()" class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/dogeba.png"style="position:fixed;width:10%;bottom:15%;">
 			
 			<div id="balDoge" onclick="refreshDoge()">
 				<h1>Click to Get Doge Balance!</h1>
@@ -34,10 +32,16 @@
 				<h1>Click to Get Shib Balance!</h1>
 			</div>
 			
-			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/dogeba.png"style="position:fixed;width:10%;left:90%;top:12.5%;">
-			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/dogeba.png"style="position:fixed;width:10%;left:90%;bottom:15%;">
+			<img onclick="woof()" class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/dogeba.png"style="position:fixed;width:10%;left:90%;top:12.5%;">
+			<img onclick="woof()" class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/dogeba.png"style="position:fixed;width:10%;left:90%;bottom:15%;">
 			
 			<iframe title="doge excel sheet" width="50%" height="35%" style="border-radius: 15px; position:absolute;left:25%;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdIVgQOEVStH6rFVaggMPg_IUkyfRHCeT6WhLrWBJ0ACbg20i5mboPBJ47I5ZSbu5B3H33tTseCAKK/pubhtml?widget=true&amp;headers=false"></iframe>
+
+			<div onclick="switchAround()" id="priceDoge" style="position:absolute;bottom:25%;left:25%;">
+			</div>
+
+			<div onclick="switchAround()" id="priceShib" style="position:absolute;bottom:20%;left:25%;"> 
+			</div>
 
 		</body> 
 		
@@ -46,4 +50,9 @@
 		</footer>
 
 		<a href="https://github.com/dotimothy/DigDogeSJ" target="_blank" style="position:absolute;bottom:1%;"><h3 style="color:blue">Checkout the Github Repo 👨‍💻</h3></a>
+
+		<!-- Sourcing Different Files-->
+		<link rel="stylesheet" href="./DigDoge.css">
+		<script src="./DigDoge.js"></script>
+
 </html>  

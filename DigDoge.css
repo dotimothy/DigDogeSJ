@@ -55,7 +55,7 @@ footer {
 }
 .doge {
 	animation: rotation 5.0s infinite linear;
-	pointer-events:auto;
+	pointer-events:all;
 }
 .doge:hover {
 	transition: 0.25s;
