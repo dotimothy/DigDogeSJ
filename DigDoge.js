@@ -168,3 +168,10 @@ function woof() {
 	console.log("Woof Woof!");
 	speakText("Woof Woof!");
 }
+
+function checkMobile() {
+	let isMobile = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+	if(isMobile) {
+		window.location.replace("https://dotimothy.github.io/DigDogeSJ/mobile");
+	}
+}
