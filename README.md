@@ -1,4 +1,4 @@
-# DigDogeSJ
+# DigDogeSJ Crypto Pool Website
 ## The Crypto Pool Website for the DigDogeSJ Pool. Featuring a Battery Saving Sleep Mode with Dark Mode UI.
 It uses <a href="https://github.com/unMineableDev/unmineable-api">unMineable API</a> and <a href="https://www.coingecko.com/en/api/">Coin Gecko API</a> to give live information about the pool balance, price of each coin, and synthesizes to give the value of the pools in USD!
 
