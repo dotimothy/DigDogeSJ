@@ -155,7 +155,7 @@ function switchAround() {
 		let dogeInDollar = 1.00 / dogePrice;
 		let shibInDollar = 1.00 / shibPrice; 
 		document.getElementById("priceDoge").innerHTML = "<h1> 1 USD = " + dogeInDollar + " DOGE </h1>";
-		document.getElementById("priceShib").innerHTML = "<h1> 1 USD = " + shibInDollar + " USD </h1>";					
+		document.getElementById("priceShib").innerHTML = "<h1> 1 USD = " + shibInDollar + " SHIB </h1>";					
 	}
 	else {
 		document.getElementById("priceDoge").innerHTML = "<h1> 1 DOGE = " + dogePrice + " USD </h1>";
