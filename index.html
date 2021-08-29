@@ -13,6 +13,13 @@
 		</head>
 
 		<script>
+			//Global Variables for Balances
+			let dogeBal = 0, shibBal = 0, dogePrice = 0, shibPrice = 0, dogeUSD = 0, shibUSD = 0;
+
+			//getting crypto prices at the very beginning
+			getDogePrice();
+			getShibPrice();
+
 			// Gets Doge Balance of Specified Unmineable Doge Address	
 			function getDogeBalance(address) {
 				//document.write(`https://api.unminable.com/v4/address/${address}?coin=DOGE`);
@@ -24,8 +31,11 @@
 							//examine the text in the response
 							response.json().then(function(data) {
 								console.log(data);			
-								doge.innerHTML = "<h1>" + data.data.balance + " DOGE </h1>";
+								dogeBal = data.data.balance;
+								dogeUSD = Math.trunc(dogeBal * dogePrice * 100) / 100;
+								doge.innerHTML = "<h1>" + dogeBal + " DOGE ($" + dogeUSD + " USD)</h1>";
 							});
+							
 						}).catch(function(err) {
 							console.log("Fetch Error :-S", err);
 						}
@@ -43,7 +53,9 @@
 							//examine the text in the response
 							response.json().then(function(data) {
 								console.log(data);			
-								shib.innerHTML = "<h1>" + data.data.balance + " SHIB </h1>";
+								shibBal = data.data.balance;
+								shibUSD = Math.trunc(shibBal * shibPrice * 100) / 100;
+								shib.innerHTML = "<h1>" + shibBal + " SHIB ($" + shibUSD + " USD)</h1>";
 							});
 						}).catch(function(err) {
 							console.log("Fetch Error :-S", err);
@@ -68,13 +80,8 @@
 			function refreshDoge() {
 				//https://unmineable.com/coins/DOGE/address/DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY
 				if(!dogeLoaded) {
-					getDogeBalance("DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY");
 					dogeLoaded = !dogeLoaded;
-				}
-				else {
-					alert("You Already Loaded DOGE Balance Once.");
-					window.reload();
-
+					getDogeBalance("DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY");
 				}
 			}
 
@@ -83,15 +90,12 @@
 			function refreshShib() {
 				//https://unmineable.com/coins/SHIB/address/0x8bafebf244f5a9603cddc550c09b2f5974362b05
 				if(!shibLoaded) {
-					getShibBalance("0x8bafebf244f5a9603cddc550c09b2f5974362b05");
 					shibLoaded = !shibLoaded;
-				}
-				else {
-					alert("You Already Loaded SHIB Balance Once.");
-					window.reload();
+					return getShibBalance("0x8bafebf244f5a9603cddc550c09b2f5974362b05");
 				}
 			}
 
+			//reloads all balances
 			let loaded = 0;
 			function refreshAll() {
 				if(!loaded) {
@@ -99,19 +103,54 @@
 					refreshShib();
 					loaded = !loaded; 
 				}
-				else {
-					alert("You Can Only Load All Balances Once.");
-					window.reload();
-				}
+			}
+
+			//gets the live price of DOGE
+			function getDogePrice() {
+				fetch(`https://api.coingecko.com/api/v3/coins/dogecoin`) 
+					.then( 
+						function(response) {
+							//examine the text in the response
+							response.json().then(function(data) {
+								console.log(data);			
+								dogePrice = data.market_data.current_price.usd;
+							});
+						}).catch(function(err) {
+							console.log("Fetch Error :-S", err);
+						}
+					)
+			}
+
+			//gets the live price of SHIB
+			function getShibPrice() {
+				fetch(`https://api.coingecko.com/api/v3/coins/shiba-inu`) 
+				.then( 
+					function(response) {
+						//examine the text in the response
+						response.json().then(function(data) {
+							console.log(data);			
+							shibPrice = data.market_data.current_price.usd;						
+						});
+					}).catch(function(err) {
+						console.log("Fetch Error :-S", err);
+					}
+				)
 			}
 
 		</script>
 
 		<style>
 			body { 
-				background-color: whitesmoke;
+				background-color: black;
+				opacity: 0%;
+				transition: 3s;
+			}
+			body:hover, body:active {
+				opacity: 100%;
+				transition: 0.5s;
 			}
 			h1, h2, h3 {
+				color: white;
 				text-align: center;
 				font-family: Courier ;
 				z-index: 0;
@@ -122,7 +161,7 @@
 			h1:hover
 			{
 				color: gold;
-				transition: 0.25s;
+				transition: 0.5s;
 			}
 			h2 {
 				font-size: 2.5em;
@@ -145,13 +184,17 @@
 			div,embed {
 				z-index: -1;
 			}
+			footer {
+				position:absolute;
+				bottom:5%;
+			}
 			.doge {
 				animation: rotation 5.0s infinite linear;
 				pointer-events:auto;
 			}
 			.doge:hover {
 				transition: 0.25s;
-				filter: contrast(1.75);
+				filter: contrast(2);
 			}
 			@keyframes rotation {
 				0% {
@@ -183,7 +226,7 @@
 			</h2>
 
 			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;top:12.5%;width:10%;">
-			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;width:10%;bottom:10%;">
+			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/shib.png"style="position:fixed;width:10%;bottom:15%;">
 			
 			<div id="balDoge" onclick="refreshDoge()">
 				<h1>Click to Get Doge Balance!</h1>
@@ -193,14 +236,16 @@
 				<h1>Click to Get Shib Balance!</h1>
 			</div>
 			
-			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;width:10%;left:90%;top:12.5%;">
-			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;width:10%;left:90%;bottom:10%;">
+			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/shib.png"style="position:fixed;width:10%;left:90%;top:12.5%;">
+			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;width:10%;left:90%;bottom:15%;">
 			
 			<iframe title="doge excel sheet" width="50%" height="35%" style="border-radius: 15px; position:absolute;left:25%;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdIVgQOEVStH6rFVaggMPg_IUkyfRHCeT6WhLrWBJ0ACbg20i5mboPBJ47I5ZSbu5B3H33tTseCAKK/pubhtml?widget=true&amp;headers=false"></iframe>
 
 		</body> 
 		
 		<footer>
-			<a href="https://github.com/dotimothy/DigDogeSJ"><h3 style="position:absolute;bottom:0px;text-align:center;">Check the Github Repo</h3></a>
+			<h3 style="color:gold">Powered by unMineable & Coin Gecko API</h3>
 		</footer>
+
+		<a href="https://github.com/dotimothy/DigDogeSJ" style="position:absolute;bottom:1%;"><h3 style="color:blue">Checkout the Github Repo 👨‍💻</h3></a>
 </html>  
