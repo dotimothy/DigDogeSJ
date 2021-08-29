@@ -159,7 +159,7 @@ function switchAround() {
 	}
 	else {
 		document.getElementById("priceDoge").innerHTML = "<h1> 1 DOGE = " + dogePrice + " USD </h1>";
-		document.getElementById("priceShib").innerHTML = "<h1> 1 SHIB = " + shibPrice + " SHIB </h1>";					
+		document.getElementById("priceShib").innerHTML = "<h1> 1 SHIB = " + shibPrice + " USD </h1>";					
 	}
 	switched = !switched;
 }
