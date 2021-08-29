@@ -16,14 +16,15 @@
 			// Gets Doge Balance of Specified Unmineable Doge Address	
 			function getDogeBalance(address) {
 				//document.write(`https://api.unminable.com/v4/address/${address}?coin=DOGE`);
+				let doge = document.getElementById("balDoge");
+				doge.innerHTML = "<h1>Calculating DOGE!</h1>";
 				fetch(`https://api.unminable.com/v4/address/${address}?coin=DOGE`) 
 					.then( 
 						function(response) {
 							//examine the text in the response
 							response.json().then(function(data) {
 								console.log(data);			
-								let bal = document.getElementById("bal");
-								bal.innerHTML = "<h1>" + data.data.balance + " DOGE </h1>";
+								doge.innerHTML = "<h1>" + data.data.balance + " DOGE </h1>";
 							});
 						}).catch(function(err) {
 							console.log("Fetch Error :-S", err);
@@ -31,22 +32,86 @@
 					)
 			}
 
+			// Gets Shib Balance of Specified Unmineable Shib Address	
+			function getShibBalance(address) {
+				//document.write(`https://api.unminable.com/v4/address/${address}?coin=Shib`);
+				let shib = document.getElementById("balShib");
+				shib.innerHTML = "<h1>Calculating Shib!</h1>";
+				fetch(`https://api.unminable.com/v4/address/${address}?coin=Shib`) 
+					.then( 
+						function(response) {
+							//examine the text in the response
+							response.json().then(function(data) {
+								console.log(data);			
+								shib.innerHTML = "<h1>" + data.data.balance + " SHIB </h1>";
+							});
+						}).catch(function(err) {
+							console.log("Fetch Error :-S", err);
+						}
+					)
+			}
+
+			//gets the current Doge workers that are active and reports their hashrates
+			//in progress
 			function getDogeWorkers(address) {
 
 			}
-			
-			//refreshes the page every so often to get the most up to date information
-			function refresh() {
-				//https://unmineable.com/coins/DOGE/address/DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY
-				getDogeBalance("DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY");
+
+			//gets the current Shib workers that are active and reports their hashrates
+			//in progress
+			function getShibWorkers(address) {
+
 			}
+			
+			//refreshes the page every so often to get the most up to date information for DOGE
+			let dogeLoaded = 0;
+			function refreshDoge() {
+				//https://unmineable.com/coins/DOGE/address/DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY
+				if(!dogeLoaded) {
+					getDogeBalance("DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY");
+					dogeLoaded = !dogeLoaded;
+				}
+				else {
+					alert("You Already Loaded DOGE Balance Once.");
+					window.reload();
+
+				}
+			}
+
+			//refreshes the page every so often to get the most up to date information
+			let shibLoaded = 0;
+			function refreshShib() {
+				//https://unmineable.com/coins/SHIB/address/0x8bafebf244f5a9603cddc550c09b2f5974362b05
+				if(!shibLoaded) {
+					getShibBalance("0x8bafebf244f5a9603cddc550c09b2f5974362b05");
+					shibLoaded = !shibLoaded;
+				}
+				else {
+					alert("You Already Loaded SHIB Balance Once.");
+					window.reload();
+				}
+			}
+
+			let loaded = 0;
+			function refreshAll() {
+				if(!loaded) {
+					refreshDoge();
+					refreshShib();
+					loaded = !loaded; 
+				}
+				else {
+					alert("You Can Only Load All Balances Once.");
+					window.reload();
+				}
+			}
+
 		</script>
 
 		<style>
 			body { 
 				background-color: whitesmoke;
 			}
-			h1, h2 {
+			h1, h2, h3 {
 				text-align: center;
 				font-family: Courier ;
 				z-index: 0;
@@ -61,6 +126,9 @@
 			}
 			h2 {
 				font-size: 2.5em;
+			}
+			h3 {
+				font-size: 2em;
 			}
 			a {
 				opacity: 100%;
@@ -105,24 +173,34 @@
 
 		</style>
 
-		<body onload="refresh()">
-			<h1>DigDogeSJ Mining Pool:</h1> 
+		<body>
+			<h1 onclick="refreshAll()">DigDogeSJ Crypto Pool:</h1> 
+
 			<h2>
 				<a target="_blank" rel="noreferrer" href="https://docs.google.com/spreadsheets/d/1o8M9dxhR1MCnDozz9fM5C06xAyAWE0OODNarMsj5qjY/edit#gid=0">GPU List</a>
 				&nbsp;&nbsp;&nbsp;
 				<a target="_blank" rel="noreferrer" href="https://discord.gg/hVCuzeqJSf">Discord</a>
 			</h2>
-			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;top:12.5%;width:20%;">
-			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;width:20%;bottom:5%;">
-			<div id="bal">
-				<h1>Calculating Doge!</h1>
+
+			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;top:12.5%;width:10%;">
+			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;width:10%;bottom:10%;">
+			
+			<div id="balDoge" onclick="refreshDoge()">
+				<h1>Click to Get Doge Balance!</h1>
 			</div>
-			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;width:20%;left:80%;top:12.5%;">
-			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;width:20%;left:80%;bottom:5%;">
-			<iframe title="doge excel sheet" width="50%" height="50%" style="border-radius: 15px; position:absolute;left:25%;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdIVgQOEVStH6rFVaggMPg_IUkyfRHCeT6WhLrWBJ0ACbg20i5mboPBJ47I5ZSbu5B3H33tTseCAKK/pubhtml?widget=true&amp;headers=false"></iframe>
+
+			<div id="balShib" onclick="refreshShib()">
+				<h1>Click to Get Shib Balance!</h1>
+			</div>
+			
+			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;width:10%;left:90%;top:12.5%;">
+			<img class="doge" alt="doge revolving circle" src="https://dotimothy.github.io/images/doge.png"style="position:fixed;width:10%;left:90%;bottom:10%;">
+			
+			<iframe title="doge excel sheet" width="50%" height="35%" style="border-radius: 15px; position:absolute;left:25%;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdIVgQOEVStH6rFVaggMPg_IUkyfRHCeT6WhLrWBJ0ACbg20i5mboPBJ47I5ZSbu5B3H33tTseCAKK/pubhtml?widget=true&amp;headers=false"></iframe>
+
 		</body> 
 		
 		<footer>
-			<h2>Powered by Solomineis</h2>
+			<a href="https://github.com/dotimothy/DigDogeSJ"><h3 style="position:absolute;bottom:0px;text-align:center;">Check the Github Repo</h3></a>
 		</footer>
 </html>  
