@@ -1,3 +1,11 @@
+/* DigDoge.js: Javascript File for DigDogeSJ Website
+* Live at https://dotimothy.github.io/DigDogeSJ;
+* Authors: 
+* Timothy Do 
+* Jason Vu
+*/ 
+
+
 //Global Variables for Balances
 let dogeBal = 0, shibBal = 0, dogePrice = 0, shibPrice = 0, dogeUSD = 0, shibUSD = 0;
 
