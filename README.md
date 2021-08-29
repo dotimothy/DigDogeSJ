@@ -4,4 +4,4 @@ It uses <a href="https://github.com/unMineableDev/unmineable-api">unMineable API
 
 ## Enjoy the <a href="https://dotimothy.github.io/DigDogeSJ">Website!</a> (From DigDogeSJ Devs)
 
-<img src="https://dotimothy.github.io/images/doge.png" width="20%"> <img src="https://dotimothy.github.io/images/shib.png" width="20%">
+<img src="https://dotimothy.github.io/images/doge.png" width="20%"> <img src="https://dotimothy.github.io/images/shib.png" width="20%">  <img src="https://dotimothy.github.io/images/dogeba.png" width="20%">
