@@ -10,8 +10,8 @@ var msg = new SpeechSynthesisUtterance();
 var volume = 1;
 var voices = ["Google US English","Google US English"];
 msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == voices[0];})[0];
-msg.pitch = 2;
-msg.rate = 5;
+msg.pitch = 1.25;
+msg.rate = 1.25;
 msg.text = '';
 msg.volume = volume;
 
@@ -24,9 +24,13 @@ function speakText(outputText) {
 //Global Variables for Balances
 let dogeBal = 0, shibBal = 0, dogePrice = 0, shibPrice = 0, dogeUSD = 0, shibUSD = 0;
 
-//getting crypto prices at the very beginning
-getDogePrice();
-getShibPrice();
+//getting crypto prices at the very beginning (if not cached)
+if(dogePrice == 0) {
+	getDogePrice();
+}
+if(shibPrice == 0) {
+	getShibPrice();	
+}
 
 // Gets Doge Balance of Specified Unmineable Doge Address	
 function getDogeBalance(address) {
@@ -107,6 +111,8 @@ function refreshShib() {
 let loaded = 0;
 function refreshAll() {
 	if(!loaded) {
+		getDogePrice();
+		getShibPrice(); 
 		refreshDoge();
 		refreshShib();
 		loaded = !loaded; 
@@ -165,8 +171,8 @@ function switchAround() {
 }
 
 function woof() {
-	console.log("Woof Woof!");
-	speakText("Woof Woof!");
+	console.log("Woof Woof Woof Woof Woof!!!");
+	speakText("Woof Woof Woof Woof Woof!!!");
 }
 
 function checkMobile() {
