@@ -89,7 +89,7 @@ function refreshDoge() {
 	//https://unmineable.com/coins/DOGE/address/DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY
 	if(!dogeLoaded) {
 		dogeLoaded = !dogeLoaded;
-		getDogeBalance("DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY");
+		return getDogeBalance("DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY");
 	}
 }
 
@@ -172,6 +172,15 @@ function woof() {
 function checkMobile() {
 	let isMobile = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 	if(isMobile) {
-		window.location.replace("https://dotimothy.github.io/DigDogeSJ/mobile");
+		window.location.replace("./mobile.html");
+		return isMobile;
+	}
+}
+
+function checkDesktop() {
+	let isDesktop = !(typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+	if(isDesktop) {
+		window.location.replace("./index.html");
+		return isDesktop;
 	}
 }

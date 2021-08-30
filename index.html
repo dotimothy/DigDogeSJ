@@ -2,7 +2,7 @@
 <!--Timothy Do-->
 <!--Jason Vu-->
 
-<!--DigDogeSJ Webpage Source Code-->
+<!--DigDogeSJ Webpage (Main) Source Code-->
 <!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -13,7 +13,14 @@
 			<meta property="og:image" content="https://dotimothy.github.io/images/dogeba.png">
 		</head>
 
-		<body onload="checkMobile()">
+		<!-- Sourcing Different Files-->
+		<link rel="stylesheet" href="./DigDoge.css">
+		<script src="./DigDoge.js"></script>
+		<script>
+			checkMobile();
+		</script>
+
+		<body>
 			<h1 onclick="refreshAll()">DigDogeSJ Crypto Pool:</h1> 
 
 			<h2>
@@ -51,9 +58,4 @@
 		</footer>
 
 		<a href="https://github.com/dotimothy/DigDogeSJ" target="_blank" style="position:absolute;bottom:1%;"><h3 style="color:blue">Checkout the Github Repo 👨‍💻</h3></a>
-
-		<!-- Sourcing Different Files-->
-		<link rel="stylesheet" href="./DigDoge.css">
-		<script src="./DigDoge.js"></script>
-
 </html>  

@@ -1,1 +1,65 @@
-DigDogeSJ Mobile Site.
+<!--Authors-->
+<!--Timothy Do-->
+<!--Jason Vu-->
+
+<!--DigDogeSJ Webpage (Mobile) Source Code-->
+<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<title>DigDogeSJ Crypto Pool</title>
+			<link rel="shortcut icon" type="image/png" href="https://dotimothy.github.io/images/dogeba.png" />
+			<meta name="viewport" content="width=device-width, initial-scale=1"> 
+			<meta name="description" content="Timothy Do's Crypto Server (DigDogeSJ)">
+			<meta property="og:image" content="https://dotimothy.github.io/images/dogeba.png">
+		</head>
+
+		<!-- Sourcing Different Files-->
+		<link rel="stylesheet" href="./DigDoge.css">
+		<!-- Mobile Needs to Change Font Sizes -->
+		<style>
+			body 
+			{
+				opacity: 1;
+			}
+			h1 {
+				font-size: 1.5em;
+			}
+			h2 {
+				font-size: 1.25em;
+			}
+			h3 {
+				font-size: 1em;
+			}
+			footer {
+				position: relative;
+			}
+		</style>
+		<script src="./DigDoge.js"></script>
+		<script>
+			checkDesktop();
+		</script>
+
+		<body onload="refreshAll()">
+			<h1 style="color:gold">DigDogeSJ Mobile Site 📱</h1>
+
+			<h2>
+				<a target="_blank" rel="noreferrer" href="https://docs.google.com/spreadsheets/d/1o8M9dxhR1MCnDozz9fM5C06xAyAWE0OODNarMsj5qjY/edit#gid=0">GPU List</a>
+				&nbsp;&nbsp;&nbsp;
+				<a target="_blank" rel="noreferrer" href="https://discord.gg/hVCuzeqJSf">Discord</a>
+			</h2>		
+
+			<div id="balDoge"></div>
+			<div id="balShib"></div>
+			<div onclick="switchAround()" id="priceDoge">Calculating Doge Price!</div>
+			<div onclick="switchAround()" id="priceShib">Calculating Shib Price!</div>
+			<img width="100%" src="https://dotimothy.github.io/images/dogeba.png">
+		</body>
+
+		<footer>
+			<h3 style="color:gold">Powered by <a href="https://github.com/unMineableDev/unmineable-api" target="_blank">unMineable</a> & <a href="https://www.coingecko.com/en/api/" target="_blank">Coin Gecko API</a></h3>
+			<a href="https://github.com/dotimothy/DigDogeSJ" target="_blank">
+				<h3 style="color:blue">Checkout the Github Repo 👨‍💻</h3>
+			</a>
+		</footer>
+
+		
