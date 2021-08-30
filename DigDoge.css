@@ -21,7 +21,7 @@ h1, h2, h3 {
 	z-index: 0;
 } 
 h1 {
-	font-size: 3em;
+	font-size: 2.5em;
 }
 h1:hover
 {
@@ -29,10 +29,10 @@ h1:hover
 	transition: 0.5s;
 }
 h2 {
-	font-size: 2.5em;
+	font-size: 2em;
 }
 h3 {
-	font-size: 2em;
+	font-size: 1.5em;
 }
 a {
 	opacity: 100%;
