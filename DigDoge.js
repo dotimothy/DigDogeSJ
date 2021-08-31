@@ -1,8 +1,11 @@
 /* DigDoge.js: Javascript File for DigDogeSJ Website
 * Live at https://dotimothy.github.io/DigDogeSJ;
-* Authors: 
-* Timothy Do 
-* Jason Vu
+* Authors: Timothy Do & Jason Vu 
+* Modifications:
+* Date 		Modification 								Author
+* 8/27/21	Resolved IP Issue and Updated Balance GETs 	TD
+* 8/28/21 	Updated Balance Getting Functions for Shib 	TD 
+* 8/29/21	Added Easter Egg & Updated the Mobile Site 	TD
 */ 
 
 //init Google Voice
@@ -23,6 +26,9 @@ function speakText(outputText) {
 
 //Global Variables for Balances
 let dogeBal = 0, shibBal = 0, dogePrice = 0, shibPrice = 0, dogeUSD = 0, shibUSD = 0;
+
+//Global Varialbles for Hashrates
+let totalDogeHash = 0, totalShibHash = 0;
 
 // Gets Doge Balance of Specified Unmineable Doge Address	
 function getDogeBalance(address) {
@@ -68,7 +74,6 @@ function getShibBalance(address) {
 }
 
 //gets the current Doge workers that are active and reports their hashrates
-//in progress -> Jason
 function getDogeWorkers(address) {
 
 }
