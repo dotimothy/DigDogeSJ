@@ -24,14 +24,6 @@ function speakText(outputText) {
 //Global Variables for Balances
 let dogeBal = 0, shibBal = 0, dogePrice = 0, shibPrice = 0, dogeUSD = 0, shibUSD = 0;
 
-//getting crypto prices at the very beginning (if not cached)
-if(dogePrice == 0) {
-	getDogePrice();
-}
-if(shibPrice == 0) {
-	getShibPrice();	
-}
-
 // Gets Doge Balance of Specified Unmineable Doge Address	
 function getDogeBalance(address) {
 	//document.write(`https://api.unminable.com/v4/address/${address}?coin=DOGE`);
@@ -44,7 +36,7 @@ function getDogeBalance(address) {
 				response.json().then(function(data) {
 					console.log(data);			
 					dogeBal = data.data.balance;
-					dogeUSD = Math.trunc(dogeBal * dogePrice * 100) / 100;
+					dogeUSD = Math.round(dogeBal * dogePrice * 100) / 100;
 					doge.innerHTML = "<h1>" + dogeBal + " DOGE ($" + dogeUSD + " USD)</h1>";
 				});
 				
@@ -66,7 +58,7 @@ function getShibBalance(address) {
 				response.json().then(function(data) {
 					console.log(data);			
 					shibBal = data.data.balance;
-					shibUSD = Math.trunc(shibBal * shibPrice * 100) / 100;
+					shibUSD = Math.round(shibBal * shibPrice * 100) / 100;
 					shib.innerHTML = "<h1>" + shibBal + " SHIB ($" + shibUSD + " USD)</h1>";
 				});
 			}).catch(function(err) {
