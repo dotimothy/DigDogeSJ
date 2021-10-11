@@ -101,7 +101,6 @@ function refreshShib() {
 	if(!shibLoaded) {
 		shibLoaded = !shibLoaded;
 		return getShibBalance("0xd55dfb9A648dE5eF35A6E1A9B7707Eea0AB6b49B");
-		//0xd55dfb9A648dE5eF35A6E1A9B7707Eea0AB6b49B
 	}
 }
 
