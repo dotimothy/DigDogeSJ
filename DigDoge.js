@@ -97,10 +97,11 @@ function refreshDoge() {
 //refreshes the page every so often to get the most up to date information
 let shibLoaded = 0;
 function refreshShib() {
-	//https://unmineable.com/coins/SHIB/address/0x8bafebf244f5a9603cddc550c09b2f5974362b05
+	//https://unmineable.com/coins/SHIB/address/0xd55dfb9A648dE5eF35A6E1A9B7707Eea0AB6b49B
 	if(!shibLoaded) {
 		shibLoaded = !shibLoaded;
-		return getShibBalance("0x8bafebf244f5a9603cddc550c09b2f5974362b05");
+		return getShibBalance("0xd55dfb9A648dE5eF35A6E1A9B7707Eea0AB6b49B");
+		//0xd55dfb9A648dE5eF35A6E1A9B7707Eea0AB6b49B
 	}
 }
 
