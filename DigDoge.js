@@ -187,3 +187,21 @@ function checkDesktop() {
 		return isDesktop;
 	}
 }
+
+function dogeTheory() {
+	let theoretical = prompt("How Many DOGE in 'Wallet':");
+	while(theoretical == null) {
+		theoretical = prompt("How Many DOGE in 'Wallet'");
+	}
+	let usd = Math.round(theoretical * dogePrice * 100) / 100;
+	alert("USD Value of " + theoretical + " DOGE is $" + usd); 
+}
+
+function shibTheory() {
+	let theoretical = prompt("How Many SHIB in 'Wallet':");
+	while(theoretical == null) {
+		theoretical = prompt("How Many SHIB in 'Wallet'");
+	}
+	let usd = Math.round(theoretical * shibPrice * 100) / 100;
+	alert("USD Value of " + theoretical + " SHIB is $" + usd); 
+}

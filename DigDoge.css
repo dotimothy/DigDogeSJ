@@ -78,3 +78,7 @@ footer {
 		transfrom: rotate(-360deg);
 	}
 }
+
+button {
+	background-color:blue;
+}
