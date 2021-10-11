@@ -35,7 +35,7 @@ function getDogeBalance(address) {
 	//document.write(`https://api.unminable.com/v4/address/${address}?coin=DOGE`);
 	let doge = document.getElementById("balDoge");
 	doge.innerHTML = "<h1>Calculating DOGE!</h1>";
-	fetch(`https://api.unminable.com/v4/address/${address}?coin=DOGE`) 
+	fetch(`https://dogechain.info/api/v1/address/balance/${address}`) 
 		.then( 
 			function(response) {
 				//examine the text in the response
