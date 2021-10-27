@@ -56,7 +56,7 @@ function getDogeWalletBalance(address) {
 	//document.write(`https://dogechain.info/api/v1/address/balance/${address}`);
 	let doge = document.getElementById("balDoge");
 	doge.innerHTML = "<h1>Calculating DOGE!</h1>";
-	fetch(`https://dogechain.info/api/v1/address/balance/${address}`) 
+	fetch(`https://dogechain.info/api/v1/address/balance/${address}`,{method:'GET',mode:'no-cors'}) 
 		.then( 
 			function(response) {
 				//examine the text in the response
@@ -71,7 +71,6 @@ function getDogeWalletBalance(address) {
 				console.log("Fetch Error :-S", err);
 			}
 		)
-
 }
 
 // Gets Shib Balance of Specified Unmineable Shib Address	
@@ -112,7 +111,7 @@ function refreshDoge() {
 	//https://unmineable.com/coins/DOGE/address/DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY
 	if(!dogeLoaded) {
 		dogeLoaded = !dogeLoaded;
-		return getDogeWalletBalance("DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY");
+		return getDogeMiningBalance("DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY");
 	}
 }
 
