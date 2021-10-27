@@ -56,7 +56,7 @@ function getDogeWalletBalance(address) {
 	//document.write(`https://dogechain.info/api/v1/address/balance/${address}`);
 	let doge = document.getElementById("balDoge");
 	doge.innerHTML = "<h1>Calculating DOGE!</h1>";
-	fetch(`https://dogechain.info/chain/Dogecoin/q/addressbalance/${address}`) 
+	fetch(`https://dogechain.info/api/v1/address/balance/${address}`) 
 		.then( 
 			function(response) {
 				//examine the text in the response
