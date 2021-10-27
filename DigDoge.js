@@ -31,7 +31,7 @@ let dogeBal = 0, shibBal = 0, dogePrice = 0, shibPrice = 0, dogeUSD = 0, shibUSD
 let totalDogeHash = 0, totalShibHash = 0;
 
 // Gets Doge Balance of Specified Unmineable Doge Address	
-function getDogeBalance(address) {
+function getDogeMiningBalance(address) {
 	//document.write(`https://api.unminable.com/v4/address/${address}?coin=DOGE`);
 	let doge = document.getElementById("balDoge");
 	doge.innerHTML = "<h1>Calculating DOGE!</h1>";
@@ -50,6 +50,28 @@ function getDogeBalance(address) {
 				console.log("Fetch Error :-S", err);
 			}
 		)
+}
+
+function getDogeWalletBalance(address) {
+	//document.write(`https://dogechain.info/api/v1/address/balance/${address}`);
+	let doge = document.getElementById("balDoge");
+	doge.innerHTML = "<h1>Calculating DOGE!</h1>";
+	fetch(`https://dogechain.info/chain/Dogecoin/q/addressbalance/${address}`) 
+		.then( 
+			function(response) {
+				//examine the text in the response
+				response.json().then(function(data) {
+					console.log(data);			
+					dogeBal = data.balance;
+					dogeUSD = Math.round(dogeBal * dogePrice * 100) / 100;
+					doge.innerHTML = "<h1>" + dogeBal + " DOGE ($" + dogeUSD + " USD)</h1>";
+				});
+				
+			}).catch(function(err) {
+				console.log("Fetch Error :-S", err);
+			}
+		)
+
 }
 
 // Gets Shib Balance of Specified Unmineable Shib Address	
@@ -90,7 +112,7 @@ function refreshDoge() {
 	//https://unmineable.com/coins/DOGE/address/DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY
 	if(!dogeLoaded) {
 		dogeLoaded = !dogeLoaded;
-		return getDogeBalance("DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY");
+		return getDogeWalletBalance("DJGP6kgqh8BEsfEkHxxtrthqPHWu2PempY");
 	}
 }
 
