@@ -25,10 +25,10 @@ function speakText(outputText) {
 }
 
 //Global Variables for Balances
-let dogeBal = 0, shibBal = 0, dogePrice = 0, shibPrice = 0, dogeUSD = 0, shibUSD = 0;
+let dogeBal = 0, shibBal = 0, elonBal = 0, dogePrice = 0, shibPrice = 0, elonPrice = 0, dogeUSD = 0, shibUSD = 0, elonUSD = 0;
 
 //Global Varialbles for Hashrates
-let totalDogeHash = 0, totalShibHash = 0;
+let totalDogeHash = 0, totalShibHash = 0, totalElonHash = 0;
 
 // Gets Doge Balance of Specified Unmineable Doge Address	
 function getDogeMiningBalance(address) {
@@ -77,7 +77,7 @@ function getDogeWalletBalance(address) {
 function getShibBalance(address) {
 	//document.write(`https://api.unminable.com/v4/address/${address}?coin=Shib`);
 	let shib = document.getElementById("balShib");
-	shib.innerHTML = "<h1>Calculating Shib!</h1>";
+	shib.innerHTML = "<h1>Calculating SHIB!</h1>";
 	fetch(`https://api.unminable.com/v4/address/${address}?coin=Shib`) 
 		.then( 
 			function(response) {
@@ -87,6 +87,27 @@ function getShibBalance(address) {
 					shibBal = data.data.balance;
 					shibUSD = Math.round(shibBal * shibPrice * 100) / 100;
 					shib.innerHTML = "<h1>" + shibBal + " SHIB ($" + shibUSD + " USD)</h1>";
+				});
+			}).catch(function(err) {
+				console.log("Fetch Error :-S", err);
+			}
+		)
+}
+
+// Gets Elon Balance of Specified Unmineable Shib Address	
+function getElonBalance(address) {
+	//document.write(`https://api.unminable.com/v4/address/${address}?coin=Shib`);
+	let elon = document.getElementById("balElon");
+	elon.innerHTML = "<h1>Calculating ELON!</h1>";
+	fetch(`https://api.unminable.com/v4/address/${address}?coin=elon`) 
+		.then( 
+			function(response) {
+				//examine the text in the response
+				response.json().then(function(data) {
+					console.log(data);			
+					elonBal = data.data.balance;
+					elonUSD = Math.round(elonBal * elonPrice * 100) / 100;
+					elon.innerHTML = "<h1>" + elonBal + " ELON ($" + elonUSD + " USD)</h1>";
 				});
 			}).catch(function(err) {
 				console.log("Fetch Error :-S", err);
@@ -125,14 +146,26 @@ function refreshShib() {
 	}
 }
 
+//refreshes the page every so often to get the most up to date information
+let elonLoaded = 0;
+function refreshElon() {
+	//https://unmineable.com/coins/SHIB/address/0xd55dfb9A648dE5eF35A6E1A9B7707Eea0AB6b49B
+	if(!elonLoaded) {
+		elonLoaded = !elonLoaded;
+		return getElonBalance("0x34BB0bd111907b6aCA51207e12E8Fd3BfE5fd4BB");
+	}
+}
+
 //reloads all balances
 let loaded = 0;
 function refreshAll() {
 	if(!loaded) {
 		getDogePrice();
 		getShibPrice(); 
+		getElonPrice();
 		refreshDoge();
 		refreshShib();
+		refreshElon();
 		loaded = !loaded; 
 	}
 }
@@ -172,18 +205,38 @@ function getShibPrice() {
 	)
 }
 
+//gets the live price of Dogeelon Mars
+function getElonPrice() {
+	fetch(`https://api.coingecko.com/api/v3/coins/dogelon-mars`) 
+	.then( 
+		function(response) {
+			//examine the text in the response
+			response.json().then(function(data) {
+				console.log(data);			
+				elonPrice = data.market_data.current_price.usd;	
+				document.getElementById("priceElon").innerHTML = "<h1> 1 ELON = " + data.market_data.current_price.usd+ " USD </h1>";					
+			});
+		}).catch(function(err) {
+			console.log("Fetch Error :-S", err);
+		}
+	)
+}
+
 //makes the prices switch around
 let switched = 0;
 function switchAround() {
 	if(!switched) {
 		let dogeInDollar = 1.00 / dogePrice;
 		let shibInDollar = 1.00 / shibPrice; 
+		let elonInDollar = 1.00 / elonPrice;
 		document.getElementById("priceDoge").innerHTML = "<h1> 1 USD = " + dogeInDollar + " DOGE </h1>";
-		document.getElementById("priceShib").innerHTML = "<h1> 1 USD = " + shibInDollar + " SHIB </h1>";					
+		document.getElementById("priceShib").innerHTML = "<h1> 1 USD = " + shibInDollar + " SHIB </h1>";
+		document.getElementById("priceElon").innerHTML = "<h1> 1 USD = " + elonInDollar + " ELON </h1>";					
 	}
 	else {
 		document.getElementById("priceDoge").innerHTML = "<h1> 1 DOGE = " + dogePrice + " USD </h1>";
-		document.getElementById("priceShib").innerHTML = "<h1> 1 SHIB = " + shibPrice + " USD </h1>";					
+		document.getElementById("priceShib").innerHTML = "<h1> 1 SHIB = " + shibPrice + " USD </h1>";
+		document.getElementById("priceElon").innerHTML = "<h1> 1 ELON = " + elonPrice + " USD </h1>";					
 	}
 	switched = !switched;
 }
@@ -225,4 +278,13 @@ function shibTheory() {
 	}
 	let usd = Math.round(theoretical * shibPrice * 100) / 100;
 	alert("USD Value of " + theoretical + " SHIB is $" + usd); 
+}
+
+function elonTheory() {
+	let theoretical = prompt("How Many ELON in 'Wallet':");
+	while(theoretical == null) {
+		theoretical = prompt("How Many ELON in 'Wallet'");
+	}
+	let usd = Math.round(theoretical * elonPrice * 100) / 100;
+	alert("USD Value of " + theoretical + " ELON is $" + usd); 
 }
