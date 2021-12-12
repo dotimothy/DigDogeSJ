@@ -149,7 +149,7 @@ function refreshShib() {
 //refreshes the page every so often to get the most up to date information
 let elonLoaded = 0;
 function refreshElon() {
-	//https://unmineable.com/coins/SHIB/address/0xd55dfb9A648dE5eF35A6E1A9B7707Eea0AB6b49B
+	//https://unmineable.com/coins/ELON/address/0x34BB0bd111907b6aCA51207e12E8Fd3BfE5fd4B
 	if(!elonLoaded) {
 		elonLoaded = !elonLoaded;
 		return getElonBalance("0x34BB0bd111907b6aCA51207e12E8Fd3BfE5fd4BB");
