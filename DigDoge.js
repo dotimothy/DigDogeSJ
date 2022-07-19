@@ -30,7 +30,17 @@ let dogeBal = 0, shibBal = 0, elonBal = 0, dogePrice = 0, shibPrice = 0, elonPri
 //Global Varialbles for Hashrates
 let totalDogeHash = 0, totalShibHash = 0, totalElonHash = 0;
 
-// Gets Doge Balance of Specified Unmineable Doge Address	
+/*
+
+1. First we create a variable called doge and set it to the id of the div with the id of balDoge.
+2. Then we set the innerHTML of the div to a message indicating that we are calculating the balance.
+3. Next we create a variable called dogeBal and set it to the balance of the address.
+4. Then we create a variable called dogeUSD and set it to the balance of the address in USD.
+5. Then we set the innerHTML of the div to a message indicating the balance of the address.
+6. Lastly we log the balance of the address to the console. 
+
+*/
+
 function getDogeMiningBalance(address) {
 	//document.write(`https://api.unminable.com/v4/address/${address}?coin=DOGE`);
 	let doge = document.getElementById("balDoge");
@@ -52,6 +62,15 @@ function getDogeMiningBalance(address) {
 		)
 }
 
+/*
+
+1. We first fetch the balance of the address from the Dogechain API.
+2. We then parse the JSON data to get the balance.
+3. We then use the balance to calculate the balance in USD.
+4. We then display the balance in the HTML. 
+
+*/
+
 function getDogeWalletBalance(address) {
 	//document.write(`https://dogechain.info/api/v1/address/balance/${address}`);
 	let doge = document.getElementById("balDoge");
@@ -72,7 +91,7 @@ function getDogeWalletBalance(address) {
 			}
 		)
 }
-
+ 
 // Gets Shib Balance of Specified Unmineable Shib Address	
 function getShibBalance(address) {
 	//document.write(`https://api.unminable.com/v4/address/${address}?coin=Shib`);
@@ -93,6 +112,16 @@ function getShibBalance(address) {
 			}
 		)
 }
+
+/*
+
+1. We create a variable called elon and set it to the element with the id of balElon.
+2. We set the innerHTML of elon to a string that says "Calculating ELON!".
+3. We create a variable called elonBal and set it to the value of the balance of the address.
+4. We create a variable called elonUSD and set it to the value of elonBal * elonPrice.
+5. We set the innerHTML of elon to a string that says the balance of the address in ELON and in USD. 
+
+*/
 
 // Gets Elon Balance of Specified Unmineable Shib Address	
 function getElonBalance(address) {
